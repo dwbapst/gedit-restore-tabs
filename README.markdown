@@ -1,10 +1,10 @@
 Gedit Restore Tabs
 ==================
 
-This is a plugin for [Gedit][1] 3.10, the official text editor of the GNOME desktop
+This is a plugin for [Gedit][1], the official text editor of the GNOME desktop
 environment. 
 
-This plugin is for Gedit versions 3 and above (including 3.10, included in Ubuntu 14.04).
+This plugin is for Gedit versions 3 and above (including 3.8 and 3.10, included in Ubuntu 14.04).
 
 **This plugin is NOT compatible with Gedit 2.x**.
 
