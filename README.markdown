@@ -1,9 +1,12 @@
 Gedit Restore Tabs
 ==================
 
-This is a plugin for [Gedit][2], the official text editor of the GNOME desktop
-environment. This plugin is for Gedit versions 3 and above. **This plugin is NOT
-compatible with Gedit 2.x**.
+This is a plugin for [Gedit][1] 3.10, the official text editor of the GNOME desktop
+environment. 
+
+This plugin is for Gedit versions 3 and above (including 3.10, included in Ubuntu 14.04).
+
+**This plugin is NOT compatible with Gedit 2.x**.
 
 Upon starting Gedit, this plugin will try restore all open documents from the 
 *last* Gedit window that was closed.
@@ -29,7 +32,7 @@ Installation
 
 5. Activate the plugin in the Gedit preferences dialog.
 
-[2]: http://www.gedit.org
+[1]: http://www.gedit.org
 
 
 
