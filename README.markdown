@@ -23,7 +23,7 @@ Installation
 
     `cp restoretabs.* ~/.local/share/gedit/plugins/`
 
-3. Copy and compile the settings schema **as sudo/root**.
+3. Copy and compile the settings schema as sudo/root:
 
     ```
     sudo cp org.gnome.gedit.plugins.restoretabs.gschema.xml /usr/share/glib-2.0/schemas/
