@@ -32,7 +32,9 @@ Installation
 
 4. Restart Gedit.
 
-5. Activate the plugin in the Gedit preferences dialog.
+5. Activate the plugin: go to `Edit` > `Preferences`, select `Plugins` tab and check `Restore Tabs` entry:
+
+![Gedit Preferences Dialog](http://sc-cdn.scaleengine.net/i/a865e1ba737660bf0426a8d9cd4f59e2.png)
 
 [1]: http://www.gedit.org
 
