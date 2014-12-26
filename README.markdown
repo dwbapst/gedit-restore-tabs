@@ -15,11 +15,11 @@ Upon starting Gedit, this plugin will try restore all open documents from the
 Installation
 ------------
 
-1. Download the source code form this repository or using the `git clone` command:
+1. Download the source code from this repository: 
 
-    `git clone git://github.com/raelgc/gedit-restore-tabs.git`
+  [Click here to Download](https://github.com/raelgc/gedit-restore-tabs/archive/master.zip)
 
-2. Copy the files to the Gedit plugins directory `~/.local/share/gedit/plugins/`.
+2. After extract, copy the files to your Gedit plugins directory:
 
     `cp restoretabs.* ~/.local/share/gedit/plugins/`
 
@@ -32,9 +32,7 @@ Installation
 
 4. Restart Gedit.
 
-5. Activate the plugin: go to `Edit` > `Preferences`, select `Plugins` tab and check `Restore Tabs` entry:
-
-![Gedit Preferences Dialog](http://sc-cdn.scaleengine.net/i/a865e1ba737660bf0426a8d9cd4f59e2.png)
+5. Activate the plugin: go to `Edit` > `Preferences`, select `Plugins` tab and check `Restore Tabs` entry.
 
 [1]: http://www.gedit.org
 
