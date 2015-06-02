@@ -21,7 +21,10 @@ Installation
 
 2. After extract, copy the files to your Gedit plugins directory:
 
-    `cp restoretabs.* ~/.local/share/gedit/plugins/`
+    ```
+    mkdir -p ~/.local/share/gedit/plugins
+    cp restoretabs.* ~/.local/share/gedit/plugins/
+    ```
 
 3. Copy and compile the settings schema as sudo/root:
 
