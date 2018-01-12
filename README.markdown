@@ -1,21 +1,26 @@
 Gedit Restore Tabs
 ==================
 
+------------------
+Forked from Rael Gugelmin Cunha's @ https://github.com/raelgc/gedit-restore-tabs and fixes some issues.
+Added - save and restore tabs in multiple windows
+------------------
+
 This is a plugin for [Gedit][1], the official text editor of the GNOME desktop
-environment. 
+environment.
 
 This plugin is for Gedit versions 3 and above (including 3.8 and 3.10, included in Ubuntu 14.04).
 
 **This plugin is NOT compatible with Gedit 2.x**.
 
-Upon starting Gedit, this plugin will try restore all open documents from the 
+Upon starting Gedit, this plugin will try restore all open documents from the
 *last* Gedit window that was closed.
 
 
 Installation
 ------------
 
-1. Download the source code from this repository: 
+1. Download the source code from this repository:
 
   [Click here to Download](https://github.com/raelgc/gedit-restore-tabs/archive/master.zip)
 
