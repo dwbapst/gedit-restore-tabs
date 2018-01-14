@@ -25,7 +25,7 @@ class RestoreTabsWindowActivatable(GObject.Object, Gedit.WindowActivatable):
         """
         Connect signal handlers.
         """
-        logging.basicConfig(stream=sys.stderr, level=logging.ERROR)
+        logging.basicConfig(stream=sys.stderr, level=logging.DEBUG)
 
         handlers = []
         handler_id = self.window.connect("delete-event", self.on_window_delete_event)
@@ -59,7 +59,7 @@ class RestoreTabsWindowActivatable(GObject.Object, Gedit.WindowActivatable):
         pass
 
     def add_uri(self,uri):
-        code = str(self._curr_instance)+RestoreTabsWindowActivatable._split_symbol+uri
+        code = str(self._curr_instance)+self._split_symbol+uri
 
         RestoreTabsWindowActivatable.lock.acquire()
         if code not in RestoreTabsWindowActivatable.uris:
@@ -69,12 +69,15 @@ class RestoreTabsWindowActivatable(GObject.Object, Gedit.WindowActivatable):
             settings.set_value('uris', GLib.Variant("as", RestoreTabsWindowActivatable.uris))
         RestoreTabsWindowActivatable.lock.release()
 
-    def remove_uri(self,uri):
+    def remove_uri(self,uri, raw_data=False):
         if self._curr_delete_window :
             logging.debug ("ignore remove on delete window")
             return
 
-        code = str(self._curr_instance)+RestoreTabsWindowActivatable._split_symbol+uri
+        if not raw_data :
+            code = str(self._curr_instance)+self._split_symbol+uri
+        else:
+            code = uri
 
         RestoreTabsWindowActivatable.lock.acquire()
         if code in RestoreTabsWindowActivatable.uris:
@@ -88,7 +91,7 @@ class RestoreTabsWindowActivatable(GObject.Object, Gedit.WindowActivatable):
         """
         add tab to list
         """
-        logging.debug("tab added")
+        logging.debug("on_window_tab_added")
 
         gfile = tab.get_document().get_location()
         if gfile:
@@ -99,7 +102,10 @@ class RestoreTabsWindowActivatable(GObject.Object, Gedit.WindowActivatable):
         """
         remove tab from list
         """
-        logging.debug("tab removed")
+        logging.debug("on_window_tab_removed")
+        if tab.get_state() == Gedit.TabState.STATE_NORMAL and tab.get_document().is_untouched():
+            logging.debug("tab untouched, skipping")
+            return
 
         gfile = tab.get_document().get_location()
         if gfile:
@@ -110,6 +116,7 @@ class RestoreTabsWindowActivatable(GObject.Object, Gedit.WindowActivatable):
         """
         save tabs, not saved at previous events may be
         """
+        logging.debug("on_window_delete_event")
         self._curr_delete_window=True
         for document in window.get_documents():
             gfile = document.get_location()
@@ -125,6 +132,7 @@ class RestoreTabsWindowActivatable(GObject.Object, Gedit.WindowActivatable):
         """
         Only restore tabs if this window is the first Gedit window instance.
         """
+        logging.debug("on_window_show")
         self.window.disconnect(self._temp_handler)
         self._temp_handler = None
 
@@ -142,7 +150,12 @@ class RestoreTabsWindowActivatable(GObject.Object, Gedit.WindowActivatable):
 
         for uri in uris:
             logging.debug ("restoring "+uri)
-            num_str,uri_str = uri.split(RestoreTabsWindowActivatable._split_symbol)
+            try:
+                num_str,uri_str = uri.split(RestoreTabsWindowActivatable._split_symbol)
+            except ValueError:
+                logging.error("wrong format of saved string "+uri)
+                self.remove_uri(uri,True)
+                continue
 
             if self._curr_instance != int(num_str):
                 logging.debug ("not current instance, ignoring "+num_str)
@@ -165,7 +178,7 @@ class RestoreTabsWindowActivatable(GObject.Object, Gedit.WindowActivatable):
         """
         Close the first tab if it is empty.
         """
-        logging.debug ("on_tab_added")
+        logging.debug ("on_tab_added?")
 
         if tab.get_state() == Gedit.TabState.STATE_NORMAL and tab.get_document().is_untouched():
             def close_tab():
