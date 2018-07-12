@@ -1,4 +1,5 @@
 import os
+import time
 from gi.repository import GObject, GLib, Gtk, Gio, Gedit
 
 SETTINGS_SCHEMA = "org.gnome.gedit.plugins.restoretabs"
@@ -10,16 +11,29 @@ class RestoreTabsWindowActivatable(GObject.Object, Gedit.WindowActivatable):
     def __init__(self):
         GObject.Object.__init__(self)
         self._handlers = []
-    
+
     def do_activate(self):
         """
         Connect signal handlers.
         """
         handlers = []
-        handler_id = self.window.connect("delete-event", 
-                                         self.on_window_delete_event)                             
+
+        handler_id = self.window.connect("delete-event",
+                                         self.on_window_delete_event)
         self._handlers.append(handler_id)
-        
+
+        handler_id = self.window.connect("tab-added",
+                                         self.on_tab_change_event)
+        self._handlers.append(handler_id)
+
+#        handler_id = self.window.connect("tab-removed",
+#                                         self.on_tab_change_event)
+#        self._handlers.append(handler_id)
+
+        handler_id = self.window.connect("active-tab-state-changed",
+                                         self.on_tab_change_event)
+        self._handlers.append(handler_id)
+
         # temporary handler to catch the first time a window is shown
         self._temp_handler = self.window.connect("show", self.on_window_show)  
 
@@ -28,10 +42,10 @@ class RestoreTabsWindowActivatable(GObject.Object, Gedit.WindowActivatable):
         Disconect any signal handlers that were added in do_activate().
         """
         [self.window.disconnect(handler_id) for handler_id in self._handlers]
-    
+
     def do_update_state(self):
         pass
-        
+
     def is_first_window(self):
         """
         Return True if the window being added is the first window instance.
@@ -43,15 +57,36 @@ class RestoreTabsWindowActivatable(GObject.Object, Gedit.WindowActivatable):
             return False
 
     def on_window_delete_event(self, window, event, data=None):
+        print("on_window_delete_event")
         uris = []
-        for document in window.get_documents():
+        app = Gedit.App.get_default()
+        for document in app.get_documents():
             gfile = document.get_location()
             if gfile:
                 uris.append(gfile.get_uri())
+        for document in window.get_documents():
+            gfile = document.get_location()
+            print(gfile.get_uri())
+            if gfile:
+                uris.remove(gfile.get_uri())
         settings = Gio.Settings.new(SETTINGS_SCHEMA)
         settings.set_value('uris', GLib.Variant("as", uris))
+        print(uris)
         return False
-    
+
+    def on_tab_change_event(self, window, tab=None):
+        uris = []
+        app = Gedit.App.get_default()
+        for document in app.get_documents():
+            gfile = document.get_location()
+            if gfile:
+                uris.append(gfile.get_uri())
+        if len(uris) > 0:
+            settings = Gio.Settings.new(SETTINGS_SCHEMA)
+            settings.set_value('uris', GLib.Variant("as", uris))
+            print(uris)
+        return False
+
     def on_window_show(self, window, data=None):
         """
         Only restore tabs if this window is the first Gedit window instance.
@@ -71,3 +106,11 @@ class RestoreTabsWindowActivatable(GObject.Object, Gedit.WindowActivatable):
                                                              0, False, True)
             self.window.disconnect(self._temp_handler)
 
+#        while time.sleep(60):
+            uris = []
+            for document in window.get_documents():
+                gfile = document.get_location()
+                if gfile:
+                    uris.append(gfile.get_uri())
+            settings = Gio.Settings.new(SETTINGS_SCHEMA)
+            settings.set_value('uris', GLib.Variant("as", uris))
