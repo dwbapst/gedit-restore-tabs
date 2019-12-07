@@ -1,4 +1,5 @@
-## Gedit Restore Tabs
+Gedit Restore Tabs
+==================
 
 This is a plugin for [Gedit][1], the official text editor of the GNOME desktop
 environment. 
@@ -11,23 +12,30 @@ Upon starting Gedit, this plugin will try restore all open documents from the
 *last* Gedit window that was closed.
 
 
-## Installation
+Installation
+------------
 
-1. Download the source code form this repository or using the `git clone` command.
-2. Copy the files to the Gedit plugins directory `~/.local/share/gedit/plugins/`.
-3. Copy and compile the settings schema **as root**.
-4. Restart Gedit.
-5. Activate the plugin in the Gedit preferences dialog.
+1. Download the source code from this repository: 
 
-#### Example Installation for Ubuntu
+  [Click here to Download](https://github.com/raelgc/gedit-restore-tabs/archive/master.zip)
+
+2. After extract, copy the files to your Gedit plugins directory:
 
     ```
-    git clone git://github.com/dwbapst/gedit-restore-tabs.git
-    cp restoretabs.* ~/.local/share/gedit/plugins/    
+    mkdir -p ~/.local/share/gedit/plugins
+    cp restoretabs.* ~/.local/share/gedit/plugins/
+    ```
+
+3. Copy and compile the settings schema as sudo/root:
+
+    ```
     sudo cp org.gnome.gedit.plugins.restoretabs.gschema.xml /usr/share/glib-2.0/schemas/
     sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
     ```
-Then restart Gedit, and activate the plugin by going to `Edit` > `Preferences`, select `Plugins` tab and check `Restore Tabs` entry.
+
+4. Restart Gedit.
+
+5. Activate the plugin: go to `Edit` > `Preferences`, select `Plugins` tab and check `Restore Tabs` entry.
 
 [1]: http://www.gedit.org
 
