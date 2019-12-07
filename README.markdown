@@ -23,12 +23,15 @@ Upon starting Gedit, this plugin will try restore all open documents from the
 
 #### Example Installation for Ubuntu
 
-    ```
-    git clone git://github.com/dwbapst/gedit-restore-tabs.git
+    git clone git://github.com/dwbapst/gedit-restore-tabs.git -b branch-hill
+    cd ./gedit-restore-tabs/
     cp restoretabs.* ~/.local/share/gedit/plugins/    
+    
+The following commands need to be done with root privileges, because we need to add a `glib` schema, and gedit looks in the /usr/ directory in the file system.
+    
     sudo cp org.gnome.gedit.plugins.restoretabs.gschema.xml /usr/share/glib-2.0/schemas/
     sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
-    ```
+    
 Then restart Gedit, and activate the plugin by going to `Edit` > `Preferences`, select `Plugins` tab and check `Restore Tabs` entry.
 
 [1]: http://www.gedit.org
