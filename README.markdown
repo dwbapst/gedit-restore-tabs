@@ -3,6 +3,8 @@
 This is a plugin for [Gedit][1], the official text editor of the GNOME desktop
 environment. 
 
+This version was forked from Rael Gugelmin Cunha's branch (https://github.com/raelgc/gedit-restore-tabs) by Kasual (branch: https://github.com/Kasual/gedit-restore-tabs) to fix Python3 support, and by Juraj Bano (https://github.com/jurajbano/gedit-restore-tabs) to restore tabs in multiple windows.
+
 This plugin is for Gedit versions 3 and above (including 3.8 and 3.10, included in Ubuntu 14.04).
 
 **This plugin is NOT compatible with Gedit 2.x**.
