@@ -1,3 +1,7 @@
+# Written by Micah Carrick.
+# Distribute under GNU GPL 3.0 License.
+
+
 import os
 import ast
 import time

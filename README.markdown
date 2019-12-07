@@ -34,4 +34,3 @@ Then restart Gedit, and activate the plugin by going to `Edit` > `Preferences`, 
 [1]: http://www.gedit.org
 
 
-
