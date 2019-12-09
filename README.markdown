@@ -3,7 +3,7 @@
 This is a plugin for [Gedit][1], the official text editor of the GNOME desktop
 environment. 
 
-This version was forked from Rael Gugelmin Cunha's branch (https://github.com/raelgc/gedit-restore-tabs) by Kasual (branch: https://github.com/Kasual/gedit-restore-tabs) to fix Python3 support, and by Hildo Guillardi Júnior (branch: (https://github.com/hildogjr/gedit-restore-tabs) to fix issues #15 and #18.
+This plugin was originally written by Micah Carrick, and licensed to distribute under the GNU GPL 3.0 License (apparently?). The particular version in this repository/branch was forked from Rael Gugelmin Cunha's branch (https://github.com/raelgc/gedit-restore-tabs) by Kasual (branch: https://github.com/Kasual/gedit-restore-tabs) to fix Python3 support, and by Maxim Akristiniy (branch: (https://github.com/AMV007/gedit-restore-tabs) to add save and restore tabs in multiple windows.
 
 This plugin is for Gedit versions 3 and above (including 3.8 and 3.10, included in Ubuntu 14.04).
 
@@ -13,7 +13,7 @@ Upon starting Gedit, this plugin will try restore all open documents from the
 *last* Gedit window that was closed.
 
 
-## Installation
+### Installation
 
 1. Download the source code form this repository or using the `git clone` command.
 2. Copy the files to the Gedit plugins directory `~/.local/share/gedit/plugins/`.
@@ -40,4 +40,3 @@ The following commands need to be done with root privileges
 Then restart Gedit, and activate the plugin by going to `Edit` > `Preferences`, select `Plugins` tab and check `Restore Tabs` entry.
 
 [1]: http://www.gedit.org
-
