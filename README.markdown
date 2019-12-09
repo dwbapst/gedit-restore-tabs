@@ -3,7 +3,7 @@
 This is a plugin for [Gedit][1], the official text editor of the GNOME desktop
 environment. 
 
-This plugin was originally written by Micah Carrick, and licensed to distribute under the GNU GPL 3.0 License (apparently?). The particular version in this repository/branch was forked from Rael Gugelmin Cunha's branch (https://github.com/raelgc/gedit-restore-tabs) by Kasual (branch: https://github.com/Kasual/gedit-restore-tabs) to fix Python3 support, and by Maxim Akristiniy (branch: (https://github.com/AMV007/gedit-restore-tabs) to add save and restore tabs in multiple windows.
+This plugin was originally written by Micah Carrick, and licensed to distribute under the GNU GPL 3.0 License (apparently?). The particular version in this repository/branch was forked from Rael Gugelmin Cunha's branch (https://github.com/raelgc/gedit-restore-tabs) by Kasual (branch: https://github.com/Kasual/gedit-restore-tabs) to fix Python3 support, and by Hildo Guillardi Júnior (branch: (https://github.com/hildogjr/gedit-restore-tabs) to fix issues #15 and #18.
 
 This plugin is for Gedit versions 3 and above (including 3.8 and 3.10, included in Ubuntu 14.04).
 
