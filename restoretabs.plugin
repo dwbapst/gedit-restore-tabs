@@ -10,5 +10,6 @@ Description=Restores document tabs on startup.
 Authors=Micah Carrick <micah@quixotix.com>
 Copyright=Copyright © 2011 Micah Carrick
 Icon=restoretabs.png
-Website=https://github.com/Quixotix/gedit-restore-tabs
-Version=3.0.0
+Website=https://github.com/raelgc/gedit-restore-tabs
+Version=3.36.0
+
