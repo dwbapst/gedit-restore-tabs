@@ -51,7 +51,7 @@ class RestoreTabsWindowActivatable(GObject.Object, Gedit.WindowActivatable):
     def on_window_delete_event(self, window, event, data=None):
         uris = []
         for document in window.get_documents():
-            gfile = document.get_location()
+            gfile = document.get_file().get_location()
             if gfile:
                 uris.append(gfile.get_uri())
         settings = Gio.Settings.new(SETTINGS_SCHEMA)
@@ -64,7 +64,7 @@ class RestoreTabsWindowActivatable(GObject.Object, Gedit.WindowActivatable):
         """
         if self.is_first_window():
             tab = self.window.get_active_tab()
-            if tab and tab.get_state() == 0 and not tab.get_document().get_location():
+            if tab and tab.get_state() == 0 and not tab.get_document().get_file():
                 self.window.close_tab(tab)
             settings = Gio.Settings.new(SETTINGS_SCHEMA)
             uris = settings.get_value('uris')
@@ -77,6 +77,7 @@ class RestoreTabsWindowActivatable(GObject.Object, Gedit.WindowActivatable):
                             self.window.create_tab_from_location(location, None, 0, 
                                                                  0, False, True)
             self.window.disconnect(self._temp_handler)
+
 
     def on_tab_added(self, window, tab, data=None):
             """
@@ -94,3 +95,4 @@ class RestoreTabsWindowActivatable(GObject.Object, Gedit.WindowActivatable):
     def tabclose(self, tab):
             self.window.close_tab(tab)
             return False
+
