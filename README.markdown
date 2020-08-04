@@ -16,7 +16,7 @@ Installation
 
 1. Download the source code from this repository, and extract the contents: 
 
-       wget https://github.com/dwbapst/gedit-restore-tabs/archive/master.zip -O gedit-restore-tabs.zip
+       wget https://github.com/raelgc/gedit-restore-tabs/archive/master.zip -O gedit-restore-tabs.zip
        unzip gedit-restore-tabs.zip
 
 2. After extraction, copy all the files that begin with `restoretabs.*` to your local `gedit` plugins directory, located at `~/.local/share/gedit/plugins/`:
